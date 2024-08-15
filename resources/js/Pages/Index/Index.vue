@@ -1,7 +1,16 @@
-<template>Hello {{ counter }}!</template>
+<template>
+  <v-app>
+    <v-container>
+        <v-btn>Click Me!</v-btn>
+     </v-container>
+  </v-app>
+</template>
 
-<script setup>
-  import {ref} from 'vue'
-  const counter = ref(0)
-  setInterval(() => counter.value++, 1000)
+<script>
+export default {
+ data() {
+   return {
+   }
+ }
+}
 </script>
