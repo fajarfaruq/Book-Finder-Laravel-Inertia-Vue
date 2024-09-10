@@ -7,6 +7,13 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+// Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Import Bootstrap Bundle JS (includes Popper)
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+
 const vuetify = createVuetify({
   components,
   directives,
