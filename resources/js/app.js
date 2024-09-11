@@ -1,23 +1,14 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 
-// Import vuetify below
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-
 // Import Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import Bootstrap Bundle JS (includes Popper)
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-
-const vuetify = createVuetify({
-  components,
-  directives,
-})
+import 'admin-lte/dist/css/adminlte.min.css';
+import 'admin-lte/dist/js/adminlte.min.js';
 
 createInertiaApp({
   resolve: name => {
@@ -27,7 +18,6 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
-      .use(vuetify)
       .mount(el)
   },
 })
