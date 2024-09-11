@@ -42,9 +42,9 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request): string
     {
-        if ($request->routeIs('auth.*')) {
+        if ($request->routeIs('auth*')) {
             return 'layouts.auth';
-        } else if($request->routeIs('admin.*')) {
+        } else if($request->routeIs('admin*')) {
             return 'layouts.admin';
         }
 
