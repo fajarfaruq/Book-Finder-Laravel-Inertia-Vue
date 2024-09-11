@@ -45,165 +45,20 @@
                                         class="underline text-gray-900 dark:text-white">Programming Book</a></div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-6 col-sm-4 col-md-4">
+                                <div v-for="book in books" :key="book.id" class="col-xs-6 col-sm-4 col-md-4">
                                     <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=mh0bU6NXrBgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Core Python Programming</h5>
-                                                The CD-ROM contains Windows and Linux Python distributions plus
-                                                extensive cross-platform source code from the book. <a
-                                                    href='http://books.google.co.id/books?id=mh0bU6NXrBgC&dq=programming&hl=&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=b-2oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Python Programming in Context</h5>
-                                                Updated with the latest version of Python, the new Third Edition
-                                                offers a thorough overview of multiple applied areas, includin... <a
-                                                    href='http://books.google.co.id/books?id=b-2oDwAAQBAJ&dq=programming&hl=&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=mIxQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Understanding Programming Languages</h5>
-                                                This book compares constructs from C with constructs from Ada in
-                                                terms of levels of abstractions. <a
-                                                    href='http://books.google.co.id/books?id=mIxQAAAAMAAJ&dq=programming&hl=&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=3RhKDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Java Programming for Beginners</h5>
-                                                The book finishes with a look at GUI development and training on how
-                                                to work with XML. The book takes an efficient route throug... <a
-                                                    href='https://play.google.com/store/books/details?id=3RhKDwAAQBAJ&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=YXQsDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Coding Literacy</h5>
-                                                In this book, Annette Vee examines the coding-as-literacy analogy
-                                                and argues that it can be an apt rhetorical frame. <a
-                                                    href='http://books.google.co.id/books?id=YXQsDwAAQBAJ&dq=programming&hl=&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=lrgrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">The Rust Programming Language</h5>
-                                                This is the undisputed go-to guide to Rust, written by two members
-                                                of the Rust core team, with feedback and contributions from ... <a
-                                                    href='https://play.google.com/store/books/details?id=lrgrDwAAQBAJ&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=Wo4TEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Learn to Code by Solving Problems</h5>
-                                                Programming languages come and go, but this book gives you the
-                                                lasting foundation you need to start thinking like a programmer. <a
-                                                    href='https://play.google.com/store/books/details?id=Wo4TEAAAQBAJ&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=z72HqqZgyjMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Python Programming Fundamentals</h5>
-                                                It employs Python as the introductory language due to the wealth of
-                                                support available for programmers. Dr. Kent D. Lee is Assoc... <a
-                                                    href='https://play.google.com/store/books/details?id=z72HqqZgyjMC&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=T13SBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Introduction to Numerical Programming</h5>
-                                                Makes Numerical Programming More Accessible to a Wider
-                                                AudienceBearing in mind the evolution of modern programming, most
-                                                specif... <a
-                                                    href='http://books.google.co.id/books?id=T13SBQAAQBAJ&dq=programming&hl=&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-4 col-md-4">
-                                    <ul class="list-unstyled border border-light bg-light text-dark">
-                                        <li class="media" style="padding:20px;height:300px!important">
-                                            <img class="mr-3"
-                                                src="http://books.google.com/books/content?id=2ezvCAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="mt-0 mb-1">Programming for Mathematicians</h5>
-                                                Many theorems are mathematically proved and programmed, and the text
-                                                concludes with an explanation of how a compiler works and ... <a
-                                                    href='http://books.google.co.id/books?id=2ezvCAAAQBAJ&dq=programming&hl=&source=gbs_api'
-                                                    target='_BLANK'><u><b>Read More</b></u></a>
-                                            </div>
-                                        </li>
+                                    <li class="media" style="padding:20px;height:300px!important">
+                                        <img class="mr-3"
+                                        :src="book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150'"
+                                        :alt="book.volumeInfo.title">
+                                        <div class="media-body">
+                                        <h5 class="mt-0 mb-1">{{ book.volumeInfo.title }}</h5>
+                                        {{ truncateDescription(book.volumeInfo.description) }}
+                                        <a :href="book.volumeInfo.infoLink" target="_BLANK">
+                                            <u><b>Read More</b></u>
+                                        </a>
+                                        </div>
+                                    </li>
                                     </ul>
                                 </div>
                             </div>
@@ -216,3 +71,25 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const books = ref([]);
+
+const fetchBooks = async () => {
+  try {
+    const response = await axios.get('https://www.googleapis.com/books/v1/volumes?q=programming');
+    books.value = response.data.items || [];
+  } catch (error) {
+    console.error('Error fetching books:', error);
+  }
+};
+
+const truncateDescription = (description) => {
+  if (!description) return 'No description available';
+  return description.length > 100 ? description.substring(0, 100) + '...' : description;
+};
+onMounted(fetchBooks);
+</script>
