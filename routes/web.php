@@ -8,13 +8,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'Index']);
 
+Route::get('login', [LoginController::class, 'login'])->name('login');
+
 Route::prefix('auth')->name('auth')->group(function () {
-	Route::get('login', [LoginController::class, 'Index'])->name('auth.login');
+	Route::get('login', [LoginController::class, 'index'])->name('.login');
+	Route::post('login', [LoginController::class, 'login'])->name('.login');
+	Route::post('logout', [LoginController::class, 'logout'])->name('.logout');
+	Route::get('logout', [LoginController::class, 'logout'])->name('.logout');
 });
 
-Route::prefix('admin')->name('admin')->group(function () {
-	Route::get('/', [DashboardController::class, 'Index'])->name('admin.index');
-	Route::prefix('book')->name('admin.book')->group(function () {
-		Route::get('/', [BookController::class, 'Index'])->name('admin.book.index');
+Route::middleware('LoginVerification')->prefix('admin')->name('admin')->group(function () {
+	Route::get('/', [DashboardController::class, 'index'])->name('.index');
+	Route::prefix('book')->name('.book')->group(function () {
+		Route::get('/', [BookController::class, 'index'])->name('.index');
 	});
 });
