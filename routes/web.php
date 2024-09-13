@@ -19,7 +19,7 @@ Route::prefix('auth')->name('auth')->group(function () {
 
 Route::middleware('LoginVerification')->prefix('admin')->name('admin')->group(function () {
 	Route::get('/', [DashboardController::class, 'index'])->name('.index');
-	Route::prefix('book')->name('.book')->group(function () {
+	Route::prefix('books')->name('.books')->group(function () {
 		Route::get('/', [BookController::class, 'index'])->name('.index');
 	});
 });

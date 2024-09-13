@@ -37,7 +37,7 @@
 					<ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu"
 						data-accordion="false">
 						<li class="nav-header">MAIN NAVIGATION</li>
-						<li class="nav-item"> <a class='nav-link' href='/dist/pages/docs/introduction'> <i
+						<li class="nav-item"> <a class='nav-link' href='/admin/books/'> <i
 									class="nav-icon bi bi-book"></i>
 								<p>Master Books</p>
 							</a> </li>

@@ -10,6 +10,6 @@ class BookController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Index');
+        return Inertia::render('Admin/Books/Index');
     }
 }
