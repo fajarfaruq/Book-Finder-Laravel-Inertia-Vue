@@ -22,5 +22,9 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share([
             'auth.user' => auth()->user(),
         ]);
+
+        \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::except([
+            '*'
+        ]);
     }
 }

@@ -22,21 +22,49 @@
                         <div class="text-gray-600 dark:text-gray-400 text-sm">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend input-group-lg">
-                                    <span class="input-group-text"  id="inputGroup-sizing-default"><i
+                                    <span class="input-group-text" id="inputGroup-sizing-default"><i
                                             class="fas fa-search"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="keyword" id="keyword"
+                                <input type="text" class="form-control" name="keyword" id="keyword" v-model="keyword"
                                     aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button"
-                                        onclick="submitSearch()">Search</button>
+                                        @click="searchBooks">Search</button>
                                 </div>
                             </div>
-                            <div id="result_query"></div>
+                            <div v-if="booksFinder.length > 0">
+                                <div id="result_query">
+                                    <div class="flex items-center">
+                                        <div class="text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                class="underline text-gray-900 dark:text-white">Hasil Penelusuran Dari :
+                                                {{ keyword }} </a></div>
+                                    </div>
+                                    <hr>
+
+                                    <ul class="list-unstyled">
+                                        <li class="media" v-for="book in booksFinder" :key="book.id">
+                                            <div class="row">
+                                                
+                                                    <div class="col-md-1">1</div>
+                                                    <img class="col-md-1" src="http://app.borwita.co.id:8000/book.png" width="20" alt="pic">
+                                                    <div class="col-md-5">
+                                                        <h5 class="mt-0 mb-1">{{ book.title }}</h5>Author : {{ book.author }} ,
+                                                        Genre : {{ book.genre }}
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <button  style="float: right;" @click="submitVote(book.id)"
+                                                            class="btn btn-lg btn-primary"><i class="fas fa-thumbs-up"></i>
+                                                            VOTE {{ book.vote_count }}</button>
+                                                    </div>
+                                            </div>
+                                        </li>
+                                    </ul><br><br>
+
+                                </div>
+                            </div>
                             <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                    class="w-8 h-8 text-gray-500">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500">
                                     <path
                                         d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                                     </path>
@@ -47,18 +75,18 @@
                             <div class="row">
                                 <div v-for="book in books" :key="book.id" class="col-xs-6 col-sm-4 col-md-4">
                                     <ul class="list-unstyled border border-light bg-light text-dark">
-                                    <li class="media" style="padding:20px;height:300px!important">
-                                        <img class="mr-3"
-                                        :src="book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150'"
-                                        :alt="book.volumeInfo.title">
-                                        <div class="media-body">
-                                        <h5 class="mt-0 mb-1">{{ book.volumeInfo.title }}</h5>
-                                        {{ truncateDescription(book.volumeInfo.description) }}
-                                        <a :href="book.volumeInfo.infoLink" target="_BLANK">
-                                            <u><b>Read More</b></u>
-                                        </a>
-                                        </div>
-                                    </li>
+                                        <li class="media" style="padding:20px;height:300px!important">
+                                            <img class="mr-3"
+                                                :src="book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150'"
+                                                :alt="book.volumeInfo.title">
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-1">{{ book.volumeInfo.title }}</h5>
+                                                {{ truncateDescription(book.volumeInfo.description) }}
+                                                <a :href="book.volumeInfo.infoLink" target="_BLANK">
+                                                    <u><b>Read More</b></u>
+                                                </a>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -76,20 +104,72 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
+const keyword = ref('');
 const books = ref([]);
+const booksFinder = ref([]);
+const searched = ref(false);
 
 const fetchBooks = async () => {
+    try {
+        const response = await axios.get('https://www.googleapis.com/books/v1/volumes?q=programming');
+        books.value = response.data.items || [];
+    } catch (error) {
+        console.error('Error fetching books:', error);
+    }
+};
+
+
+const truncateDescription = (description) => {
+    if (!description) return 'No description available';
+    return description.length > 100 ? description.substring(0, 100) + '...' : description;
+};
+onMounted(fetchBooks);
+
+const searchBooks = async () => {
+    searched.value = true;
+    if (keyword.value.trim() === '') {
+        booksFinder.value = [];
+        return;
+    }
+
+    try {
+        const response = await fetch(`/books/search?name=${encodeURIComponent(keyword.value.trim())}`);
+        if (response.ok) {
+            const data = await response.json();
+            booksFinder.value = data.books;
+        } else {
+            console.error('Error fetching books:', response.statusText);
+            booksFinder.value = [];
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        booksFinder.value = [];
+    }
+};
+
+const submitVote = async (bookId) => {
   try {
-    const response = await axios.get('https://www.googleapis.com/books/v1/volumes?q=programming');
-    books.value = response.data.items || [];
+    const response = await fetch(`/books/vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: bookId }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      // Update the local state with the new vote count
+      const book = booksFinder.value.find(b => b.id === bookId);
+      if (book) {
+        book.vote_count = data.vote_count;
+        alert('Vote success !!');
+      }
+    } else {
+      console.error('Error updating vote:', response.statusText);
+    }
   } catch (error) {
-    console.error('Error fetching books:', error);
+    console.error('Error:', error);
   }
 };
 
-const truncateDescription = (description) => {
-  if (!description) return 'No description available';
-  return description.length > 100 ? description.substring(0, 100) + '...' : description;
-};
-onMounted(fetchBooks);
 </script>

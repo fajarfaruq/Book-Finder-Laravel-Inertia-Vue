@@ -54,7 +54,8 @@
 </template>
 
 <script setup>
-import axios from 'axios';
+import axios from 'axios'
+import 'devextreme/dist/css/dx.light.css';
 import { usePage } from '@inertiajs/vue3'
 
 const { props } = usePage();
